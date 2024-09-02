@@ -5,19 +5,12 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./shell.nix
+      ./network.nix
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "nixos"; # Define your hostname.
-  
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Enable wakeOnLan
-  networking.interfaces.enp3s0.wakeOnLan.enable = true;
 
   # Enable bluetooth
   hardware.bluetooth.enable = true;
