@@ -54,8 +54,8 @@
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us";
-    xkbVariant = "";
+    xkb.layout = "us";
+    xkb.variant = "";
   };
 
   # Enable CUPS to print documents.
@@ -102,7 +102,6 @@
 
   # Enable the Flakes feature and the accompanying new nix command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   environment.systemPackages = with pkgs; [
      vim
      zsh
@@ -146,7 +145,7 @@
  programs.zsh = {
   enable = true;
   enableCompletion = true;
-  enableAutosuggestions = true; 
+  autosuggestions.enable = true; 
   syntaxHighlighting.enable = true;
        shellAliases = {
        cl = "colorls";
@@ -155,7 +154,7 @@
        lg = "lazygit";
        cat = "bat";
      };
-    oh-my-zsh = {
+    ohMyZsh = {
     enable = true;
     plugins = [ "autojump" "asdf" "git" "thefuck" "fzf"];
     theme = "obraun";
