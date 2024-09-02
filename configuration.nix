@@ -101,6 +101,7 @@
       dbeaver-bin
       zsh
       brave
+      zoom-us
     ];
   };
 
