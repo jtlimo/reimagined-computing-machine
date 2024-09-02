@@ -151,6 +151,8 @@
      jetbrains.idea-community-bin
      just
      colorls
+     gcc
+     helix
   ];
 
  environment.variables.EDITOR = "nvim";
