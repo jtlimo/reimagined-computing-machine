@@ -4,6 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./shell.nix
     ];
 
   # Bootloader.
@@ -140,27 +141,6 @@
   ];
 
  environment.variables.EDITOR = "nvim";
- users.defaultUserShell = pkgs.zsh;
-
- programs.zsh = {
-  enable = true;
-  enableCompletion = true;
-  autosuggestions.enable = true; 
-  syntaxHighlighting.enable = true;
-       shellAliases = {
-       cl = "colorls";
-       cls = "clear";
-       ls = "eza --color=always --long --git --no-filesize --icons=always --no-time";
-       lg = "lazygit";
-       cat = "bat";
-     };
-    ohMyZsh = {
-    enable = true;
-    plugins = [ "autojump" "asdf" "git" "thefuck" "fzf"];
-    theme = "obraun";
-  };
-};
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
