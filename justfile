@@ -1,19 +1,14 @@
-default:
-just --list
-  
-hello:
-echo "hello world"
+default: 
+ just --list
 
-#[group('nix')]
-#gc:
-# garbage collect all unused nix store entries (system-wide)
-#@sudo nix-collect-garbage --delete-older-than 7d
+gc:
+ sudo nix-collect-garbage --delete-older-than 7d
 
-deploy:
-nixos-rebuild switch --flake . --use-remote-sudo
+deploy: 
+ nixos-rebuild switch --flake ~/Documents/nixos-config.#jessicafileto --use-remote-sudo
 
-debug:
-nixos-rebuild switch --flake . --use-remote-sudo --show-trace --verbose
+debug: 
+ nixos-rebuild switch --flake ~/Documents/nixos-config.#jessicafileto --use-remote-sudo --show-trace --verbose
 
-up:
-nix flake update
+up: 
+ nix flake update
