@@ -2,7 +2,10 @@
 
 ## Why NixOs?
 
-I moved from Arch linux machine after a disastrous update of my system, that made me lost everything in my computer. :sad:
+I moved from Arch linux machine after a disastrous update of my system, that made me lost everything in my computer.
+
+![sad](https://media1.tenor.com/m/aGgnqxZUzeUAAAAC/sad.gif)
+
 I'm searching for a new distro, and NixOs with the idea of reproducible configuration through machines blow my mind, so I start to learn the nix language and how to configure my machine.
 
 ## How to run
