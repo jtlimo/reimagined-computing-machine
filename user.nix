@@ -14,6 +14,7 @@
       zsh
       brave
       zoom-us
+      telegram-desktop
     ];
   };
 }
