@@ -15,6 +15,7 @@
       brave
       zoom-us
       telegram-desktop
+      discord
     ];
   };
 }
