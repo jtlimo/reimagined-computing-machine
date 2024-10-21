@@ -35,6 +35,7 @@
      colorls
      gcc
      helix
+     asdf-vm
   ];
 
  environment.variables.EDITOR = "nvim";
