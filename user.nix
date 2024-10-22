@@ -16,6 +16,7 @@
       zoom-us
       telegram-desktop
       discord
+      yarr
     ];
   };
 }
