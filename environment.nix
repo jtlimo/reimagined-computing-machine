@@ -36,6 +36,7 @@
      gcc
      helix
      asdf-vm
+     podman-compose
   ];
 
  environment.variables.EDITOR = "nvim";
