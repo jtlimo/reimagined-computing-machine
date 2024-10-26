@@ -34,7 +34,7 @@
           autoLogin = {
               enable = true;
               user = "jessicafileto";
-            }
+            };
           defaultSession = "plasma";
           sddm = {
               enable = true;
@@ -43,7 +43,7 @@
         };
       desktopManager = {
           plasma6.enable = true;
-        }
+        };
     };
 
   # Configure keymap in X11
