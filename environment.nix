@@ -37,6 +37,7 @@
      helix
      asdf-vm
      podman-compose
+     inputs.nixvim.packages.x86_64-linux.default
   ];
 
  environment.variables.EDITOR = "nvim";
