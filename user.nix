@@ -3,7 +3,7 @@
   users.users.jessicafileto = {
     isNormalUser = true;
     description = "Jessica de Lima Fileto";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "podman" ];
     packages = with pkgs; [
       kdePackages.kate
       thunderbird
@@ -17,6 +17,7 @@
       telegram-desktop
       discord
       yarr
+      librewolf
     ];
   };
 }

@@ -40,4 +40,11 @@
   ];
 
  environment.variables.EDITOR = "nvim";
+ virtualisation.containers.enable = true;
+ virtualisation = {
+    podman = {
+        enable = true;
+        defaultNetwork.settings.dns_enabled = true;
+      };
+  };
 }
