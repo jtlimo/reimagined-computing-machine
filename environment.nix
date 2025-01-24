@@ -42,7 +42,7 @@
     helix
     asdf-vm
     podman-compose
-    inputs.nixvim.packages.x86_64-linux.default # neovim config from github
+    # inputs.nixvim.packages.x86_64-linux.default # neovim config from github #removing to waiting fix
   ];
 
   environment.variables.EDITOR = "nvim";
