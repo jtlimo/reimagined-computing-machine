@@ -65,6 +65,12 @@
     pulse.enable = true;
   };
 
+  # Enable systemd-resolved
+  # This is necessary because of mullvad vpn
+  services.resolved.enable = true;
+  services.mullvad-vpn.enable = true;
+  services.mullvad-vpn.package = pkgs.mullvad-vpn;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
