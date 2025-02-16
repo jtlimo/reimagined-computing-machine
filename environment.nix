@@ -43,7 +43,7 @@
     podman-compose
     # inputs.nixvim.packages.x86_64-linux.default # neovim config from github #removing to waiting fix
     lazydocker
-    onlyoffice-desktopeditors
+    onlyoffice-bin
   ];
 
   environment.variables.EDITOR = "nvim";
