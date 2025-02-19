@@ -7,7 +7,6 @@
     packages = with pkgs; [
       kdePackages.kate
       thunderbird
-      tidal-hifi
       vscode
       bruno
       dbeaver-bin
@@ -18,6 +17,8 @@
       discord
       yarr
       librewolf
+      spotify
+      onlyoffice-desktopeditors
     ];
   };
 }
