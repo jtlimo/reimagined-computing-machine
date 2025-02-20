@@ -19,6 +19,7 @@
       librewolf
       spotify
       onlyoffice-desktopeditors
+      standardnotes
     ];
   };
 }
