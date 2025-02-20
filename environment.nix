@@ -4,7 +4,6 @@
   ...
 }: {
   programs.firefox.enable = true;
-  programs.hyprland.enable = true;
 
   environment.systemPackages = with pkgs; [
     vim
@@ -43,6 +42,9 @@
     podman-compose
     # inputs.nixvim.packages.x86_64-linux.default # neovim config from github #removing to waiting fix
     lazydocker
+    gnomeExtensions.appindicator
+    adwaita-icon-theme
+    gnome-tweaks
   ];
 
   environment.variables.EDITOR = "nvim";

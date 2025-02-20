@@ -26,31 +26,19 @@
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  # services.xserver.enable = true;
+  services.xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
-  services = {
-      displayManager = {
-          autoLogin = {
-              enable = true;
-              user = "jessicafileto";
-            };
-          defaultSession = "plasma";
-          sddm = {
-              enable = true;
-              wayland.enable = true;
-            };
-        };
-      desktopManager = {
-          plasma6.enable = true;
-        };
-    };
+  # Enable GNOME Desktop environment.
+  services.xserver = {
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+};
 
-  # Configure keymap in X11
-  #  services.xserver = {
-  #   xkb.layout = "us";
-  #   xkb.variant = "";
-  #  };
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "jessicafileto";
+
+  # Not suspend when close the notebook lid
+  services.logind.extraConfig = "HandleLidSwitch=ignore";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -76,6 +64,14 @@
 
   # Enable the Flakes feature and the new nix command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # FIXME: Workaround for crashes when autologin in gnome 
+  # https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
+  systemd.services."getty@tty1".enable = false;
+  systemd.services."autovt@tty1".enable = false;
+
+  # Enable gnome-settings daemon to get systray icons
+  services.udev.packages = with pkgs; [ gnome-settings-daemon ];
 
   system.stateVersion = "24.05";
 }
