@@ -1,9 +1,10 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, lib, ... }: {
 # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.jessicafileto = {
+  
+  users.users.jessicafileto = {  
     isNormalUser = true;
     description = "Jessica de Lima Fileto";
-    extraGroups = [ "networkmanager" "wheel" "podman" ];
+    extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
       thunderbird
@@ -20,6 +21,7 @@
       spotify
       onlyoffice-desktopeditors
       standardnotes
+      kdePackages.okular
     ];
   };
 }

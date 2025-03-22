@@ -1,8 +1,7 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{ pkgs, inputs, ... }:
+let
+  unstable = inputs.nixpkgs-unstable.legacyPackages.x86_64-linux;
+in {
   programs.firefox.enable = true;
 
   environment.systemPackages = with pkgs; [
@@ -31,7 +30,6 @@
     asdf
     wget
     tcpdump
-    podman
     podman-desktop
     libgcc
     jetbrains.idea-community-bin
@@ -39,20 +37,21 @@
     colorls
     gcc
     asdf-vm
-    podman-compose
-    # inputs.nixvim.packages.x86_64-linux.default # neovim config from github #removing to waiting fix
-    lazydocker
+    unstable.lazydocker
     gnomeExtensions.appindicator
     adwaita-icon-theme
     gnome-tweaks
+    zed-editor
+    pulsar
+    unstable.docker
+    # inputs.nixvim.packages.x86_64-linux.default # neovim config from github #removing to waiting fix
   ];
 
   environment.variables.EDITOR = "nvim";
-  virtualisation.containers.enable = true;
-  virtualisation = {
-    podman = {
-      enable = true;
-      defaultNetwork.settings.dns_enabled = true;
-    };
+
+  virtualisation.docker.enable = true;
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
   };
 }

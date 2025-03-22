@@ -62,10 +62,13 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Allow insecure packages
+  nixpkgs.config.permittedInsecurePackages = ["pulsar-1.122.0"];
+
   # Enable the Flakes feature and the new nix command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # FIXME: Workaround for crashes when autologin in gnome 
+  # FIXME: Workaround for crashes when autologin in gnome
   # https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
@@ -75,4 +78,3 @@
 
   system.stateVersion = "24.05";
 }
-
