@@ -4,7 +4,7 @@
   users.users.jessicafileto = {  
     isNormalUser = true;
     description = "Jessica de Lima Fileto";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       kdePackages.kate
       thunderbird

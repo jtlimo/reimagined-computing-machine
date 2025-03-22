@@ -50,8 +50,4 @@ in {
   environment.variables.EDITOR = "nvim";
 
   virtualisation.docker.enable = true;
-  virtualisation.docker.rootless = {
-    enable = true;
-    setSocketVariable = true;
-  };
 }
