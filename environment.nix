@@ -53,6 +53,7 @@ in {
     unstable.atac
     k9s
     ghostty
+    neovim
     # inputs.nixvim.packages.x86_64-linux.default # neovim config from github #removing to waiting fix
   ];
 
