@@ -57,6 +57,7 @@ in {
     # inputs.nixvim.packages.x86_64-linux.default # neovim config from github #removing to waiting fix
     krita
     aseprite
+    unstable.zotero
   ];
 
   environment.variables.EDITOR = "nvim";
