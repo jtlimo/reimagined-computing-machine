@@ -24,7 +24,6 @@ in {
     gh
     ethtool
     ripgrep
-    vscode
     wezterm
     autojump
     asdf
@@ -32,7 +31,7 @@ in {
     tcpdump
     podman-desktop
     libgcc
-    jetbrains.idea-community-bin
+    unstable.jetbrains.idea-community-bin
     just
     colorls
     gcc
@@ -58,6 +57,7 @@ in {
     krita
     aseprite
     unstable.zotero
+    nodejs_23
   ];
 
   environment.variables.EDITOR = "nvim";

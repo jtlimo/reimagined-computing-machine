@@ -8,7 +8,6 @@
     packages = with pkgs; [
       kdePackages.kate
       thunderbird
-      vscode
       bruno
       dbeaver-bin
       zsh
@@ -22,6 +21,7 @@
       onlyoffice-desktopeditors
       standardnotes
       kdePackages.okular
+      vscode-fhs
     ];
   };
 }
