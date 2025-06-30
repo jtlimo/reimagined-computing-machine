@@ -58,6 +58,7 @@ in {
     aseprite
     unstable.zotero
     nodejs_23
+    unstable.vlc
   ];
 
   environment.variables.EDITOR = "nvim";
