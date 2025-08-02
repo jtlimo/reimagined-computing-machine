@@ -44,7 +44,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -63,7 +63,7 @@
   nixpkgs.config.allowUnfree = true;
 
   # Allow insecure packages
-  nixpkgs.config.permittedInsecurePackages = ["pulsar-1.122.0"];
+  nixpkgs.config.permittedInsecurePackages = ["pulsar-1.128.0"];
 
   # Enable the Flakes feature and the new nix command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

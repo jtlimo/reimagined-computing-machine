@@ -1,8 +1,9 @@
 { config, pkgs, ... }: {
   # Define nerdfonts packages to download
 
-  fonts.packages = with pkgs; [
-  (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" ]; })
- ];
- 
+ fonts.packages = [
+           pkgs.nerd-fonts.jetbrains-mono
+           pkgs.nerd-fonts.droid-sans-mono
+           pkgs.nerd-fonts.fira-code
+         ];
 }

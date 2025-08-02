@@ -19,5 +19,8 @@ users.defaultUserShell = pkgs.zsh;
     plugins = [ "autojump" "asdf" "git" "thefuck" "fzf"];
     theme = "obraun";
   };
+  shellInit = ''
+    export PATH="/usr/local/bin:$PATH"
+  '';
 };
 }

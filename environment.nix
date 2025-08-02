@@ -31,7 +31,6 @@ in {
     tcpdump
     podman-desktop
     libgcc
-    unstable.jetbrains.idea-community-bin
     just
     colorls
     gcc
@@ -57,7 +56,6 @@ in {
     krita
     aseprite
     unstable.zotero
-    nodejs_23
     unstable.vlc
   ];
 
