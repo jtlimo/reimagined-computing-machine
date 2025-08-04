@@ -57,6 +57,8 @@ in {
     aseprite
     unstable.zotero
     unstable.vlc
+    unstable.ungoogled-chromium
+    google-chrome
   ];
 
   environment.variables.EDITOR = "nvim";
