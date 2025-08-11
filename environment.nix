@@ -59,6 +59,7 @@ in {
     unstable.vlc
     unstable.ungoogled-chromium
     google-chrome
+    libreoffice-bin
   ];
 
   environment.variables.EDITOR = "nvim";
