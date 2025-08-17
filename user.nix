@@ -21,7 +21,6 @@
       onlyoffice-desktopeditors
       standardnotes
       kdePackages.okular
-      vscode-fhs
     ];
   };
 }

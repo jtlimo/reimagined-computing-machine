@@ -58,6 +58,7 @@ in {
     unstable.zotero
     unstable.vlc
     unstable.ungoogled-chromium
+    unstable.vscode-fhs
     google-chrome
     libreoffice
   ];
