@@ -62,9 +62,6 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # Allow unsupported system
-  nixpkgs.config.allowUnsupportedSystem = true;
-
   # Allow insecure packages
   nixpkgs.config.permittedInsecurePackages = ["pulsar-1.128.0"];
 
