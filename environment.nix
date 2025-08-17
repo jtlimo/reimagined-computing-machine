@@ -1,10 +1,18 @@
 { pkgs, inputs, ... }:
 let
-  unstable = inputs.nixpkgs-unstable.legacyPackages.x86_64-linux;
+  pkgsUnfree = import inputs.nixpkgs {
+    system = "x86_64-linux";
+    config.allowUnfree = true;
+  };
+
+  unstable = import inputs.nixpkgs-unstable {
+    system = "x86_64-linux";
+    config.allowUnfree = true;
+  };
 in {
   programs.firefox.enable = true;
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgsUnfree; [
     vim
     zsh
     htop
@@ -40,7 +48,6 @@ in {
     adwaita-icon-theme
     gnome-tweaks
     zed-editor
-    pulsar
     unstable.docker
     unstable.dive
     ctop

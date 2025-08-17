@@ -62,9 +62,6 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # Allow insecure packages
-  nixpkgs.config.permittedInsecurePackages = ["pulsar-1.128.0"];
-
   # Enable the Flakes feature and the new nix command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
