@@ -7,18 +7,28 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, nixpkgs-unstable, ... }@inputs: {
     nixosConfigurations.jessicafileto = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+      
+      # Import the packages with unfree allowed
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      
+      # Similarly configure unstable packages
+      specialArgs = {
+        unstable = import nixpkgs-unstable {
+          inherit system;
+          config.allowUnfree = true;
+        };
+        inherit inputs;
+      };
+
       modules = [
         ./configuration.nix
-	  {
-          # Set all inputs parameters as special arguments for all submodules,
-          # so you can directly use all dependencies in inputs in submodules
-          _module.args = { inherit inputs; };
-        }
       ];
     };
   };
 }
-
