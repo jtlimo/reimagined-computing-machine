@@ -14,23 +14,27 @@
       specialArgs = { inherit inputs; };
 
       modules = [
-        ./configuration.nix
+  ./configuration.nix
 
-        # System-wide nixpkgs settings
-        {
-          nixpkgs.config.allowUnfree = true;
+  {
+    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
+      "code"       # vscode
+      "vscode"     # some derivations might use this name instead
+    ];
 
-          # Add an overlay for unstable
-          nixpkgs.overlays = [
-            (final: prev: {
-              unstable = import nixpkgs-unstable {
-                system = "x86_64-linux";
-                config.allowUnfree = true;
-              };
-            })
+    nixpkgs.overlays = [
+      (final: prev: {
+        unstable = import inputs.nixpkgs-unstable {
+          system = "x86_64-linux";
+          config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
+            "code"
+            "vscode"
           ];
-        }
-      ];
+        };
+      })
+    ];
+  }
+];
     };
   };
 }
