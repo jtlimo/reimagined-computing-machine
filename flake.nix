@@ -7,24 +7,29 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, ... }@inputs: let
-    system = "x86_64-linux";  # Explicitly define system architecture
-  in {
+  outputs = { self, nixpkgs, nixpkgs-unstable, ... }@inputs: {
     nixosConfigurations.jessicafileto = nixpkgs.lib.nixosSystem {
-      inherit system;  # Pass the system explicitly
+      system = "x86_64-linux";
+      
+      # Special arguments for modules
+      specialArgs = { inherit inputs; };
       
       modules = [
         ./configuration.nix
-        {
+        ({ config, pkgs, ... }: {
+          # Allow unfree packages system-wide
           nixpkgs.config.allowUnfree = true;
-          _module.args = {
-            inherit inputs;
-            unstable = import nixpkgs-unstable {
-              inherit system;
-              config.allowUnfree = true;
-            };
-          };
-        }
+          
+          # Configure unstable channel with unfree allowed
+          nixpkgs.overlays = [
+            (final: prev: {
+              unstable = import nixpkgs-unstable {
+                system = "x86_64-linux";
+                config.allowUnfree = true;
+              };
+            })
+          ];
+        })
       ];
     };
   };
