@@ -16,6 +16,7 @@
           # Set all inputs parameters as special arguments for all submodules,
           # so you can directly use all dependencies in inputs in submodules
           _module.args = { inherit inputs; };
+          nixpkgs.config.allowUnfree = true;
         }
       ];
     };
