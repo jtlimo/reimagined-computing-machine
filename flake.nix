@@ -13,14 +13,12 @@
       
       # Import the packages with unfree allowed
       pkgs = import nixpkgs {
-        inherit system;
         config.allowUnfree = true;
       };
       
       # Similarly configure unstable packages
       specialArgs = {
         unstable = import nixpkgs-unstable {
-          inherit system;
           config.allowUnfree = true;
         };
         inherit inputs;
