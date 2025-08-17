@@ -10,23 +10,24 @@
   outputs = { self, nixpkgs, nixpkgs-unstable, ... }@inputs: {
     nixosConfigurations.jessicafileto = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+
       specialArgs = { inherit inputs; };
 
       modules = [
         ./configuration.nix
 
-        {
+        ({ inputs, ... }: {
           nixpkgs.config.allowUnfree = true;
 
           nixpkgs.overlays = [
             (final: prev: {
-              unstable = import nixpkgs-unstable {
+              unstable = import inputs.nixpkgs-unstable {
                 system = "x86_64-linux";
                 config.allowUnfree = true;
               };
             })
           ];
-        }
+        })
       ];
     };
   };
