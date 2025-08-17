@@ -10,17 +10,17 @@
   outputs = { self, nixpkgs, nixpkgs-unstable, ... }@inputs: {
     nixosConfigurations.jessicafileto = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      
-      # Special arguments for modules
+
       specialArgs = { inherit inputs; };
-      
+
       modules = [
         ./configuration.nix
-        ({ config, pkgs, ... }: {
-          # Allow unfree packages system-wide
+
+        # System-wide nixpkgs settings
+        {
           nixpkgs.config.allowUnfree = true;
-          
-          # Configure unstable channel with unfree allowed
+
+          # Add an overlay for unstable
           nixpkgs.overlays = [
             (final: prev: {
               unstable = import nixpkgs-unstable {
@@ -29,7 +29,7 @@
               };
             })
           ];
-        })
+        }
       ];
     };
   };
