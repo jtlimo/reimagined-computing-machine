@@ -7,28 +7,18 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, ... }@inputs: {
+  outputs = { self, nixpkgs, ... }@inputs: {
     nixosConfigurations.jessicafileto = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-
-      specialArgs = { inherit inputs; };
-
       modules = [
         ./configuration.nix
-
-        ({ inputs, ... }: {
-          nixpkgs.config.allowUnfree = true;
-
-          nixpkgs.overlays = [
-            (final: prev: {
-              unstable = import inputs.nixpkgs-unstable {
-                system = "x86_64-linux";
-                config.allowUnfree = true;
-              };
-            })
-          ];
-        })
+	  {
+          # Set all inputs parameters as special arguments for all submodules,
+          # so you can directly use all dependencies in inputs in submodules
+          _module.args = { inherit inputs; };
+        }
       ];
     };
   };
 }
+

@@ -12,7 +12,6 @@
       dbeaver-bin
       zsh
       brave
-      zoom-us
       telegram-desktop
       discord
       yarr
