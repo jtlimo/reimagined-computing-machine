@@ -73,5 +73,9 @@
   # Enable gnome-settings daemon to get systray icons
   services.udev.packages = with pkgs; [ gnome-settings-daemon ];
 
+  # WakeOnLan Workaround
+  services.cron.enable = true;
+  services.cron.systemCronJobs = ["@reboot root ${pkgs.ethtool}/sbin/ethtool -s enp3s0 wol g"];
+
   system.stateVersion = "24.05";
 }
