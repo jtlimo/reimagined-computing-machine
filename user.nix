@@ -20,6 +20,7 @@
       onlyoffice-desktopeditors
       standardnotes
       kdePackages.okular
+      popsicle
     ];
   };
 }
