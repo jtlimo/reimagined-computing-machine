@@ -34,7 +34,6 @@ in {
     ripgrep
     wezterm
     autojump
-    asdf
     wget
     tcpdump
     podman-desktop
@@ -42,7 +41,6 @@ in {
     just
     colorls
     gcc
-    asdf-vm
     unstable.lazydocker
     gnomeExtensions.appindicator
     adwaita-icon-theme
