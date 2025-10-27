@@ -16,7 +16,7 @@ users.defaultUserShell = pkgs.zsh;
      };
     ohMyZsh = {
     enable = true;
-    plugins = [ "autojump" "asdf" "git" "thefuck" "fzf"];
+    plugins = [ "autojump" "git" "thefuck" "fzf"];
     theme = "obraun";
   };
   shellInit = ''
