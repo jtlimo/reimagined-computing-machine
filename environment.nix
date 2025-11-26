@@ -66,6 +66,7 @@ in {
     unstable.vscode-fhs
     google-chrome
     libreoffice
+    typst
   ];
 
   environment.variables.EDITOR = "nvim";
