@@ -21,6 +21,7 @@
       standardnotes
       kdePackages.okular
       popsicle
+      asciidoctor
     ];
   };
 }
