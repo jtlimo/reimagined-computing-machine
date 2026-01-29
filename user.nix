@@ -22,6 +22,8 @@
       kdePackages.okular
       popsicle
       asciidoctor
+      graphviz
+      tutanota-desktop
     ];
   };
 }
