@@ -24,6 +24,7 @@
       asciidoctor
       graphviz
       tutanota-desktop
+      protonmail-export
     ];
   };
 }
