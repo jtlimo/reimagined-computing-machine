@@ -25,6 +25,7 @@
       graphviz
       tutanota-desktop
       protonmail-export
+      ente-auth
     ];
   };
 }
