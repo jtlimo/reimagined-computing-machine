@@ -2,7 +2,7 @@
   description = "Avell Notebook Flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixvim.url = "github:daniloraisi/nixvim";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
