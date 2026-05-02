@@ -26,6 +26,7 @@
       tutanota-desktop
       protonmail-export
       ente-auth
+      qbz
     ];
   };
 }
