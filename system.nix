@@ -38,7 +38,10 @@
   services.displayManager.autoLogin.user = "jessicafileto";
 
   # Not suspend when close the notebook lid
-  services.logind.extraConfig = "HandleLidSwitch=ignore";
+ #services.logind.extraConfig = "HandleLidSwitch=ignore";
+  services.logind.settings.Login = {
+    HandleLidSwitch = "ignore";
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
