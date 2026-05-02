@@ -21,7 +21,7 @@ in {
     bat
     eza
     tlrc
-    thefuck
+    pay-respects
     lazygit
     oh-my-zsh
     fd

@@ -29,7 +29,7 @@
   services.xserver.enable = true;
 
   # Enable GNOME Desktop environment.
-  services.xserver = {
+  services = {
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
 };
