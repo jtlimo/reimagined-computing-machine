@@ -67,6 +67,7 @@ in {
     google-chrome
     libreoffice
     typst
+    anytype
   ];
 
   environment.variables.EDITOR = "nvim";
