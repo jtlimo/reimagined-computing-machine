@@ -47,7 +47,6 @@
         pkgs.ffmpeg
         pkgs.ocenaudio
         pkgs.easyeffects
-        pkgs.vosk-model-small-pt-br
       ];
 
       shellHook = ''
