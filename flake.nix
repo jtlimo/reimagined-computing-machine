@@ -7,20 +7,54 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, ... }@inputs:
+  let
+    system = "x86_64-linux";
+
+    pkgs = import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    };
+
+    pythonEnv = pkgs.python3.withPackages (ps: with ps; [
+      numpy
+      sounddevice
+      websockets
+    ]);
+  in
+  {
     nixosConfigurations.jessicafileto = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
+      inherit system;
+
       modules = [
         ./configuration.nix
-	  {
-          # Set all inputs parameters as special arguments for all submodules,
-          # so you can directly use all dependencies in inputs in submodules
+        {
           _module.args = { inherit inputs; };
+
           nixpkgs.config.allowUnfree = true;
-          nixpkgs.config.permittedInsecurePackages = [ "pnpm-10.29.2" ];
+          nixpkgs.config.permittedInsecurePackages = [
+            "pnpm-10.29.2"
+          ];
         }
       ];
     };
+
+    devShells.${system}.audio = pkgs.mkShell {
+      packages = [
+        pythonEnv
+
+        pkgs.stdenv.cc.cc.lib
+        pkgs.ffmpeg
+        pkgs.ocenaudio
+        pkgs.easyeffects
+        pkgs.vosk-model-small-pt-br
+      ];
+
+      shellHook = ''
+        export LD_LIBRARY_PATH=${pkgs.stdenv.cc.cc.lib}/lib:$LD_LIBRARY_PATH
+
+        echo "🎧 Ambiente de transcrição pronto"
+      '';
+    };
   };
 }
-
