@@ -46,7 +46,7 @@ in {
     adwaita-icon-theme
     gnome-tweaks
     zed-editor
-    unstable.docker
+    docker
     unstable.dive
     ctop
     btop

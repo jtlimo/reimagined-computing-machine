@@ -2,7 +2,7 @@
   description = "Avell Notebook Flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixvim.url = "github:daniloraisi/nixvim";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
@@ -17,6 +17,7 @@
           # so you can directly use all dependencies in inputs in submodules
           _module.args = { inherit inputs; };
           nixpkgs.config.allowUnfree = true;
+          nixpkgs.config.permittedInsecurePackages = [ "pnpm-10.29.2" ];
         }
       ];
     };
