@@ -44,35 +44,24 @@
       ];
     };
 
-  devShells.${system}.audio = pkgs.mkShell {
-      packages = [
+  devShells.${system}.audio = (pkgs.buildFHSEnv {
+      name = "audio-env";
+      targetPkgs = pkgs: [
         pythonEnv
-
         pkgs.stdenv.cc.cc.lib
         pkgs.ffmpeg
         pkgs-unstable.ocenaudio
         pkgs.easyeffects
         
-        # Garante que os pacotes de ambiente estão acessíveis
-        pkgs.gsettings-desktop-schemas
+        # Bibliotecas que fornecem os esquemas globais do GTK de forma nativa na estrutura FHS
+        pkgs.glib
         pkgs.gtk3
-        pkgs.dconf
+        pkgs.gsettings-desktop-schemas
       ];
-
-      shellHook = ''
+      profile = ''
         export LD_LIBRARY_PATH=${pkgs.stdenv.cc.cc.lib}/lib:$LD_LIBRARY_PATH
-
-        # A chave de ouro: força o GIO a carregar o dconf e os backends de settings
-        export GIO_EXTRA_MODULES="${pkgs.dconf}/lib/gio/modules"
-
-        # Aponta o XDG direto para as pastas de share onde moram os schemas compilados
-        export XDG_DATA_DIRS="${pkgs.gsettings-desktop-schemas}/share:${pkgs.gtk3}/share:$XDG_DATA_DIRS"
-        
-        # Alvo direto no schema do FileChooser do GTK3
-        export GSETTINGS_SCHEMAS_PATH="${pkgs.gsettings-desktop-schemas}/share/gsettings-desktop-schemas/gsettings-desktop-schemas:${pkgs.gtk3}/share/gsettings-desktop-schemas/gtk+3.0"
-
-        echo "🎧 Ambiente de transcrição pronto"
+        echo "🎧 Ambiente FHS pronto. Rode 'ocenaudio' para testar."
       '';
-    };
+    }).env;
   };
 }
