@@ -52,15 +52,19 @@
         pkgs.ffmpeg
         pkgs-unstable.ocenaudio
         pkgs.easyeffects
+        pkgs.glib
         pkgs.gsettings-desktop-schemas
         pkgs.gtk3
       ];
 
       shellHook = ''
         export LD_LIBRARY_PATH=${pkgs.stdenv.cc.cc.lib}/lib:$LD_LIBRARY_PATH
+
+        # Garante que o shell herda os schemas de dados e ícones do sistema e do nixpkgs
+        export XDG_DATA_DIRS="${pkgs.gsettings-desktop-schemas}/share:${pkgs.gtk3}/share:$XDG_DATA_DIRS"
         
-        export XDG_DATA_DIRS=${pkgs.gsettings-desktop-schemas}/share/gsettings-desktop-schemas/${pkgs.gsettings-desktop-schemas.name}:${pkgs.gtk3}/share/gsettings-desktop-schemas/${pkgs.gtk3.name}:$XDG_DATA_DIRS
-        export GSETTINGS_SCHEMAS_PATH=${pkgs.gsettings-desktop-schemas}/share/gsettings-desktop-schemas/${pkgs.gsettings-desktop-schemas.name}:${pkgs.gtk3}/share/gsettings-desktop-schemas/${pkgs.gtk3.name}
+        # Define explicitamente onde procurar os schemas do GTK
+        export GSETTINGS_SCHEMAS_PATH="${pkgs.gsettings-desktop-schemas}/share/gsettings-desktop-schemas/${pkgs.gsettings-desktop-schemas.name}"
 
         echo "🎧 Ambiente de transcrição pronto"
       '';
