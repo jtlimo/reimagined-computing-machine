@@ -44,27 +44,32 @@
       ];
     };
 
-   devShells.${system}.audio = pkgs.mkShell {
-      packages = [
+  devShells.${system}.audio = (pkgs.buildFHSUserEnv {
+      name = "audio-env";
+      
+      targetPkgs = pkgs: [
         pythonEnv
-
         pkgs.stdenv.cc.cc.lib
         pkgs.ffmpeg
+        pkgs-unstable.ocenaudio        
         pkgs.easyeffects
-
-        (pkgs.symlinkJoin {
-          name = "ocenaudio-wrapped";
-          paths = [ pkgs-unstable.ocenaudio ];
-          buildInputs = [ pkgs.gtk3 pkgs.gsettings-desktop-schemas ];
-          nativeBuildInputs = [ pkgs.wrapGAppsHook4 ]; 
-        })
+        
+        # Dependências de sistema que o ocenaudio precisa para GTK e Schemas
+        pkgs.glib
+        pkgs.gtk3
+        pkgs.gsettings-desktop-schemas
+        pkgs.dconf                      # Necessário para salvar configurações
       ];
 
-      shellHook = ''
+      # Comandos executados ao entrar no ambiente
+      profile = ''
         export LD_LIBRARY_PATH=${pkgs.stdenv.cc.cc.lib}/lib:$LD_LIBRARY_PATH
-
-        echo "🎧 Ambiente de transcrição pronto"
+        
+        # Vincula os esquemas do host para dentro do FHS
+        export GSETTINGS_SCHEMAS_PATH=/usr/share/gsettings-desktop-schemas/$(basename ${pkgs.gsettings-desktop-schemas.name})
+        
+        echo "🎧 Ambiente FHS de transcrição pronto (Ocenaudio corrigido)"
       '';
-    };
+    }).env; 
   };
 }
