@@ -7,11 +7,16 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, ... }@inputs:
   let
     system = "x86_64-linux";
 
     pkgs = import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    };
+
+    pkgs-unstable = import nixpkgs-unstable {
       inherit system;
       config.allowUnfree = true;
     };
@@ -45,12 +50,17 @@
 
         pkgs.stdenv.cc.cc.lib
         pkgs.ffmpeg
-        pkgs.ocenaudio
+        pkgs-unstable.ocenaudio
         pkgs.easyeffects
+        pkgs.gsettings-desktop-schemas
+        pkgs.gtk3
       ];
 
       shellHook = ''
         export LD_LIBRARY_PATH=${pkgs.stdenv.cc.cc.lib}/lib:$LD_LIBRARY_PATH
+        
+        export XDG_DATA_DIRS=${pkgs.gsettings-desktop-schemas}/share/gsettings-desktop-schemas/${pkgs.gsettings-desktop-schemas.name}:${pkgs.gtk3}/share/gsettings-desktop-schemas/${pkgs.gtk3.name}:$XDG_DATA_DIRS
+        export GSETTINGS_SCHEMAS_PATH=${pkgs.gsettings-desktop-schemas}/share/gsettings-desktop-schemas/${pkgs.gsettings-desktop-schemas.name}:${pkgs.gtk3}/share/gsettings-desktop-schemas/${pkgs.gtk3.name}
 
         echo "🎧 Ambiente de transcrição pronto"
       '';
