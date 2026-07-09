@@ -25,6 +25,7 @@
       numpy
       sounddevice
       websockets
+      openai-whisper
     ]);
   in
   {
