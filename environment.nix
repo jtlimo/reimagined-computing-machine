@@ -68,6 +68,7 @@ in {
     libreoffice
     typst
     anytype
+    syncthing
   ];
 
   environment.variables.EDITOR = "nvim";
