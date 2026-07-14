@@ -67,7 +67,6 @@ in {
     google-chrome
     libreoffice
     typst
-    anytype
     syncthing
   ];
 
